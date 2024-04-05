@@ -7,8 +7,8 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.example.advuts160421001.view.SignInFragment"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
+        android:label="Login Screen"
+        tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/actionSignUpDirections"
             app:destination="@id/signUpFragment" />
@@ -16,10 +16,12 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.example.advuts160421001.view.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
+        android:label="Register Screen"
+        tools:layout="@layout/fragment_sign_up">
         <action
             android:id="@+id/actionSignInDirections"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
