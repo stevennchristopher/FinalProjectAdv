@@ -1,5 +1,6 @@
 package com.example.advuts160421001.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,6 +26,12 @@ class SignInFragment : Fragment() {
         binding.txtSignUp.setOnClickListener() {
             val action = SignInFragmentDirections.actionSignUpDirections()
             Navigation.findNavController(it).navigate(action)
+        }
+
+        binding.btnSign.setOnClickListener() {
+            val intent = Intent(requireContext(), HomeMainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
     }
 }

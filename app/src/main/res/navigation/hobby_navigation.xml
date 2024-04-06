@@ -12,6 +12,9 @@
         <action
             android:id="@+id/actionSignUpDirections"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/actionSignInToHome"
+            app:destination="@id/home_navigation" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -24,4 +27,5 @@
             app:popUpTo="@id/signInFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <include app:graph="@navigation/home_navigation" />
 </navigation>
