@@ -13,20 +13,25 @@ import com.example.advuts160421001.databinding.ActivityHomeMainBinding
 class HomeMainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeMainBinding
     private lateinit var navController: NavController
+
+    companion object {
+        val activeIdUser = "random_16071239872_user"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        navController = (supportFragmentManager.findFragmentById(R.id.hostHomeFragment) as NavHostFragment).navController
+        val activeIdUser = intent.getStringExtra(activeIdUser)
+        Log.d("testiduser", activeIdUser.toString())
 
+        navController = (supportFragmentManager.findFragmentById(R.id.hostHomeFragment) as NavHostFragment).navController
         binding.bottomNav.setupWithNavController(navController)
 
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
-
-        Log.d("test", "masuk")
     }
 
     override fun onSupportNavigateUp(): Boolean {
