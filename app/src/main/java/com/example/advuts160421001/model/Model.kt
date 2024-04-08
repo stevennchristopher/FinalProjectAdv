@@ -21,3 +21,11 @@ data class User(
     val email:String?,
     val password:String?
 )
+
+data class Berita(
+    val id: String?,
+    val judul: String?,
+    val urlFoto: String?,
+    val deskripsi: String?,
+    val username_pembuat: String?
+)

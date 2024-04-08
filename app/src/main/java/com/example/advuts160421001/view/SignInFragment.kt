@@ -67,6 +67,8 @@ class SignInFragment : Fragment() {
                         }
                         else if(cekUser.result.toString() == "success")
                         {
+                            Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_LONG).show()
+
                             val intent = Intent(requireContext(), HomeMainActivity::class.java)
                             intent.putExtra(HomeMainActivity.activeIdUser, cekUser.id.toString())
                             startActivity(intent)
