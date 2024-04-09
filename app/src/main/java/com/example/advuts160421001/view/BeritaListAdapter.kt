@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.advuts160421001.databinding.BeritaListItemBinding
 import com.example.advuts160421001.model.Berita
 import com.squareup.picasso.Picasso
-import javax.security.auth.callback.Callback
+import com.squareup.picasso.Callback
 
 class BeritaListAdapter(val beritalist:ArrayList<Berita>)
     : RecyclerView.Adapter<BeritaListAdapter.BeritaViewHolder>()
@@ -28,7 +28,17 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
         picasso.listener { picasso, uri, exception ->
             exception.printStackTrace()
         }
-        picasso.build().load(beritalist[position].urlFoto).into(holder.binding.imgBerita)
+        picasso.build().load(beritalist[position].urlFoto)
+            .into(holder.binding.imgBerita, object:Callback {
+                override fun onSuccess() {
+                    holder.binding.progressImage.visibility = View.INVISIBLE
+                    holder.binding.imgBerita.visibility = View.VISIBLE
+                }
+
+                override fun onError(e: Exception?) {
+                    Log.e("picasso_error", e.toString())
+                }
+            })
 
         holder.binding.txtTitleBerita.text = beritalist[position].judul
         holder.binding.txtUsernameBerita.text = "@" + beritalist[position].username_pembuat
