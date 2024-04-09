@@ -21,10 +21,6 @@ import com.google.gson.Gson
 class SignInFragment : Fragment() {
     private lateinit var binding:FragmentSignInBinding
 
-    companion object {
-        val activeIdUser = "random_16071239872_user"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

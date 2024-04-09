@@ -15,7 +15,7 @@ class HomeMainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     companion object {
-        val activeIdUser = "random_16071239872_user"
+        var activeIdUser = "random_16071239872_user"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +24,9 @@ class HomeMainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val activeIdUser = intent.getStringExtra(activeIdUser)
+        activeIdUser = intent.getStringExtra(activeIdUser).toString()
         Log.d("testiduser", activeIdUser.toString())
+
 
         navController = (supportFragmentManager.findFragmentById(R.id.hostHomeFragment) as NavHostFragment).navController
         binding.bottomNav.setupWithNavController(navController)

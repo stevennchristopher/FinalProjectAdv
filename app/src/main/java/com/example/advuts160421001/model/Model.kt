@@ -16,10 +16,14 @@ data class CekRegister(
 data class User(
     val id:String?,
     val username:String?,
-    val firstname:String?,
-    val lastname:String?,
+    val nama_depan:String?,
+    val nama_belakang:String?,
     val email:String?,
     val password:String?
+)
+
+data class CekUpdateUser(
+    val result:String?
 )
 
 data class Berita(
