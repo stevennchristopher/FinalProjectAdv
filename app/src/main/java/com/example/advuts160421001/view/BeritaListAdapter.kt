@@ -34,21 +34,10 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
         holder.binding.txtUsernameBerita.text = "@" + beritalist[position].username_pembuat
         holder.binding.txtDeskripsiBerita.text = beritalist[position].deskripsi
 
-//        holder.binding.btnRead.setOnClickListener{
-//            val action = StudentListFragmentDirections.actionStudentDetail(studentList[position].id.toString())
-//            Navigation.findNavController(it).navigate(action)
-//        }
-
-//        object: Callback {
-//                override fun onSuccess() {
-//                    holder.binding.progressImage.visibility = View.INVISIBLE
-//                    holder.binding.imgStudent.visibility = View.VISIBLE
-//                }
-//
-//                override fun onError(e: Exception?) {
-//                    Log.e("picasso_error", e.toString())
-//                }
-//            })
+        holder.binding.btnRead.setOnClickListener{
+            val action = HomeFragmentDirections.actionBeritaDetails(beritalist[position].id.toString())
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

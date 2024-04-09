@@ -33,3 +33,12 @@ data class Berita(
     val deskripsi: String?,
     val username_pembuat: String?
 )
+
+data class Paragraf(
+    val id: String?,
+    val judulBerita: String?,
+    val urlFotoBerita: String?,
+    val username_pembuat: String?,
+    val subjudul: String?,
+    val deskripsi: String?
+)
