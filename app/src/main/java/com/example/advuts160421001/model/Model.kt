@@ -1,5 +1,9 @@
 package com.example.advuts160421001.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 data class CekUser(
     val result:String?,
     val id:String?
@@ -13,14 +17,18 @@ data class CekRegister(
     val result:String?
 )
 
+@Entity
 data class User(
-    val id:String?,
+    @ColumnInfo(name="username")
     val username:String?,
-    val nama_depan:String?,
-    val nama_belakang:String?,
+    @ColumnInfo(name="email")
     val email:String?,
+    @ColumnInfo(name="password")
     val password:String?
-)
+    ){
+    @PrimaryKey(autoGenerate = true)
+    val id:Int = 0
+}
 
 data class CekUpdateUser(
     val result:String?
