@@ -1,6 +1,7 @@
 package com.example.advuts160421001.view
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import com.squareup.picasso.Picasso
 import com.squareup.picasso.Callback
 
 class BeritaListAdapter(val beritalist:ArrayList<Berita>)
-    : RecyclerView.Adapter<BeritaListAdapter.BeritaViewHolder>()
+    : RecyclerView.Adapter<BeritaListAdapter.BeritaViewHolder>(), ReadButtonClick
 {
     class BeritaViewHolder(var binding: BeritaListItemBinding)
         : RecyclerView.ViewHolder(binding.root)
@@ -57,5 +58,10 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
         beritalist.clear()
         beritalist.addAll(newFoodList)
         notifyDataSetChanged()
+    }
+
+    override fun onReadButtonClick(v: View) {
+        val action = HomeFragmentDirections.actionBeritaDetails(id.toString())
+        Navigation.findNavController(v).navigate(action)
     }
 }
