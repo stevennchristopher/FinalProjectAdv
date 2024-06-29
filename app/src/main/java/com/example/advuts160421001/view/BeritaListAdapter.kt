@@ -1,8 +1,6 @@
 package com.example.advuts160421001.view
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -55,7 +53,7 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
         return beritalist.size
     }
 
-    fun updateBeritaList(newFoodList: ArrayList<Berita>) {
+    fun updateBeritaList(newFoodList: List<Berita>) {
         beritalist.clear()
         beritalist.addAll(newFoodList)
         notifyDataSetChanged()
