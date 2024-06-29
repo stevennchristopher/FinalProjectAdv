@@ -19,16 +19,15 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class User(
+    @PrimaryKey(autoGenerate = true)
+    val id:Int = 0,
     @ColumnInfo(name="username")
     val username:String?,
     @ColumnInfo(name="email")
     val email:String?,
     @ColumnInfo(name="password")
     val password:String?
-    ){
-    @PrimaryKey(autoGenerate = true)
-    val id:Int = 0
-}
+)
 
 //data class CekUpdateUser(
 //    val result:String?
@@ -36,6 +35,8 @@ data class User(
 
 @Entity
 data class Berita(
+    @PrimaryKey(autoGenerate = true)
+    val id:Int = 0,
     @ColumnInfo(name="judul")
     val judul: String?,
     @ColumnInfo(name="urlFoto")
@@ -46,20 +47,16 @@ data class Berita(
     val tanggalbuat: Long?,
     @ColumnInfo(name="user_id")
     val username_pembuat: String?
-){
-    @PrimaryKey(autoGenerate = true)
-    val id:Int = 0
-}
+)
 
 @Entity
 data class Paragraf(
+    @PrimaryKey(autoGenerate = true)
+    val id:Int = 0,
     @ColumnInfo(name="subjudul")
     val subjudul: String?,
     @ColumnInfo(name="deskripsi")
     val deskripsi: String?,
     @ColumnInfo(name="berita_id")
-    val beritaId: Int
-){
-    @PrimaryKey(autoGenerate = true)
-    val id:Int = 0
-}
+    val beritaId: Int? = null
+)

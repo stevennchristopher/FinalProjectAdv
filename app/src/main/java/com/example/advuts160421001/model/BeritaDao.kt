@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface BeritaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg berita: Berita)
+    fun insertAll(beritas: List<Berita>)
 
     @Query("SELECT b.id, b.judul, b.urlFoto, b.deskripsi, u.username as username_pembuat \n" +
             "  FROM berita as b \n" +

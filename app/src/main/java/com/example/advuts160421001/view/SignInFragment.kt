@@ -20,7 +20,7 @@ import com.example.advuts160421001.databinding.FragmentSignInBinding
 //import com.example.advuts160421001.model.CekUser
 import com.google.gson.Gson
 
-class SignInFragment : Fragment() {
+class SignInFragment : Fragment(), SignButtonClick {
     private lateinit var dataBinding:FragmentSignInBinding
 
     override fun onCreateView(
@@ -28,6 +28,7 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         dataBinding = DataBindingUtil.inflate<FragmentSignInBinding>(inflater, R.layout.fragment_sign_in, container, false)
+        dataBinding.listener = this
         return dataBinding.root
     }
 
@@ -88,5 +89,14 @@ class SignInFragment : Fragment() {
 //                q.add(stringRequest)
 //            }
 //        }
+    }
+
+    override fun onSignInButtonClick(v: View) {
+        TODO("Not yet implemented")
+    }
+
+    override fun toSignUpButtonClick(v: View) {
+        val action = SignInFragmentDirections.actionSignUpDirections()
+        Navigation.findNavController(v).navigate(action)
     }
 }

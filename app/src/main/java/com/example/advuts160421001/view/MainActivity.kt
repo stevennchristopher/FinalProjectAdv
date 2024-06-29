@@ -9,12 +9,12 @@ import com.example.advuts160421001.R
 import com.example.advuts160421001.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var databinding: ActivityMainBinding
     private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
+        databinding = ActivityMainBinding.inflate(layoutInflater)
+        val view = databinding.root
         setContentView(view)
 
         navController = (supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment).navController

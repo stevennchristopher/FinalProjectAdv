@@ -31,6 +31,7 @@ class SignUpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate<FragmentSignUpBinding>(inflater, R.layout.fragment_sign_up, container, false)
+        // nanti implement ini dataBinding.listener = this
         return dataBinding.root
     }
 

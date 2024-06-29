@@ -35,62 +35,62 @@ class BeritaDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ParagrafListViewModel::class.java)
         viewModel.fetch(beritaId)
 
-        observeViewModel()
+//        observeViewModel()
     }
 
-    fun observeViewModel() {
-        viewModel.paragrafLiveData.observe(viewLifecycleOwner, Observer { paragrafList ->
-            var counter = 0
-
-            val picasso = Picasso.Builder(requireContext())
-            picasso.build().load(paragrafList[counter].urlFotoBerita).into(binding.imgParagraf)
-            binding.txtTitleBeritaInParagraf.text = paragrafList[counter].judulBerita
-            binding.txtUsernameParagraf.text = "@" + paragrafList[counter].username_pembuat
-
-            binding.txtSubJudulParagraf.text = paragrafList[counter].subjudul
-            binding.txtDeskripsiParagraf.text = paragrafList[counter].deskripsi
-
-            binding.btnNext.setOnClickListener {
-                if (counter < paragrafList.size - 1) {
-                    counter += 1
-
-                    binding.txtSubJudulParagraf.text = paragrafList[counter].subjudul
-                    binding.txtDeskripsiParagraf.text = paragrafList[counter].deskripsi
-
-                    if(counter+1 > paragrafList.size - 1){
-                        val color = ContextCompat.getColor(requireContext(), R.color.md_theme_dark_outline)
-                        binding.btnNext.backgroundTintList = ColorStateList.valueOf(color)
-                    }
-
-                    if(counter > 0){
-                        val color = ContextCompat.getColor(requireContext(), R.color.md_theme_dark_inversePrimary)
-                        binding.btnPrevious.backgroundTintList = ColorStateList.valueOf(color)
-                    }
-
-                }
-            }
-
-            binding.btnPrevious.setOnClickListener {
-                if (counter > 0) {
-                    counter -= 1
-
-                    Log.d("counternow", counter.toString())
-
-                    binding.txtSubJudulParagraf.text = paragrafList[counter].subjudul
-                    binding.txtDeskripsiParagraf.text = paragrafList[counter].deskripsi
-
-                    if(counter < paragrafList.size - 1){
-                        val color = ContextCompat.getColor(requireContext(), R.color.md_theme_dark_inversePrimary)
-                        binding.btnNext.backgroundTintList = ColorStateList.valueOf(color)
-                    }
-
-                    if(counter == 0){
-                        val color = ContextCompat.getColor(requireContext(), R.color.md_theme_dark_outline)
-                        binding.btnPrevious.backgroundTintList = ColorStateList.valueOf(color)
-                    }
-
-                }
-            }
-        })
-    }
+//    fun observeViewModel() {
+//        viewModel.paragrafLiveData.observe(viewLifecycleOwner, Observer { paragrafList ->
+//            var counter = 0
+//
+//            val picasso = Picasso.Builder(requireContext())
+//            picasso.build().load(paragrafList[counter].urlFotoBerita).into(binding.imgParagraf)
+//            binding.txtTitleBeritaInParagraf.text = paragrafList[counter].judulBerita
+//            binding.txtUsernameParagraf.text = "@" + paragrafList[counter].username_pembuat
+//
+//            binding.txtSubJudulParagraf.text = paragrafList[counter].subjudul
+//            binding.txtDeskripsiParagraf.text = paragrafList[counter].deskripsi
+//
+//            binding.btnNext.setOnClickListener {
+//                if (counter < paragrafList.size - 1) {
+//                    counter += 1
+//
+//                    binding.txtSubJudulParagraf.text = paragrafList[counter].subjudul
+//                    binding.txtDeskripsiParagraf.text = paragrafList[counter].deskripsi
+//
+//                    if(counter+1 > paragrafList.size - 1){
+//                        val color = ContextCompat.getColor(requireContext(), R.color.md_theme_dark_outline)
+//                        binding.btnNext.backgroundTintList = ColorStateList.valueOf(color)
+//                    }
+//
+//                    if(counter > 0){
+//                        val color = ContextCompat.getColor(requireContext(), R.color.md_theme_dark_inversePrimary)
+//                        binding.btnPrevious.backgroundTintList = ColorStateList.valueOf(color)
+//                    }
+//
+//                }
+//            }
+//
+//            binding.btnPrevious.setOnClickListener {
+//                if (counter > 0) {
+//                    counter -= 1
+//
+//                    Log.d("counternow", counter.toString())
+//
+//                    binding.txtSubJudulParagraf.text = paragrafList[counter].subjudul
+//                    binding.txtDeskripsiParagraf.text = paragrafList[counter].deskripsi
+//
+//                    if(counter < paragrafList.size - 1){
+//                        val color = ContextCompat.getColor(requireContext(), R.color.md_theme_dark_inversePrimary)
+//                        binding.btnNext.backgroundTintList = ColorStateList.valueOf(color)
+//                    }
+//
+//                    if(counter == 0){
+//                        val color = ContextCompat.getColor(requireContext(), R.color.md_theme_dark_outline)
+//                        binding.btnPrevious.backgroundTintList = ColorStateList.valueOf(color)
+//                    }
+//
+//                }
+//            }
+//        })
+//    }
 }

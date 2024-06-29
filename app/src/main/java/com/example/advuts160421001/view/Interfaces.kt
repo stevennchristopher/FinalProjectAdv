@@ -8,3 +8,7 @@ interface ReadButtonClick {
     fun onReadButtonClick(v: View)
 }
 
+interface SignButtonClick {
+    fun onSignInButtonClick(v: View)
+    fun toSignUpButtonClick(v: View)
+}

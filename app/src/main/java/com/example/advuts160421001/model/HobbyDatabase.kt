@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.todoapp.util.DB_NAME
 
-@Database(entities = arrayOf(User::class), version =  1)
+@Database(entities = arrayOf(User::class, Berita::class, Paragraf::class), version =  1)
 abstract class HobbyDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun beritaDao(): BeritaDao

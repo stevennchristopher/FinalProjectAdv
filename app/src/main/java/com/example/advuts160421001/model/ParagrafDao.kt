@@ -9,9 +9,9 @@ import androidx.room.Query
 @Dao
 interface ParagrafDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg paragraf: Paragraf)
+    fun insertAll(pargrafs: List<Paragraf>)
 
-    @Query("SELECT p.id, b.judul as judulBerita, b.urlFoto as urlFotoBerita, u.username as username_pembuat, p.subjudul, p.deskripsi\n" +
+    @Query("SELECT p.id, p.berita_id as beritaId, b.judul as judulBerita, b.urlFoto as urlFotoBerita, u.username as username_pembuat, p.subjudul, p.deskripsi\n" +
             "FROM paragraf as p\n" +
             "INNER JOIN berita as b ON p.berita_id = b.id\n" +
             "INNER JOIN user as u ON b.user_id = u.id\n" +
