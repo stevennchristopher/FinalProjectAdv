@@ -7,17 +7,17 @@ import androidx.room.RoomDatabase
 import com.example.todoapp.util.DB_NAME
 
 @Database(entities = arrayOf(User::class), version =  1)
-abstract class UserDatabase: RoomDatabase() {
+abstract class HobbyDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
 
     companion object {
-        @Volatile private var instance: UserDatabase ?= null
+        @Volatile private var instance: HobbyDatabase ?= null
         private val LOCK = Any()
 
         fun buildDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                UserDatabase::class.java,
+                HobbyDatabase::class.java,
                 DB_NAME).build()
 
         operator fun invoke(context:Context) {

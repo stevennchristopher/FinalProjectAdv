@@ -4,14 +4,14 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-data class CekUser(
-    val result:String?,
-    val id:String?
-)
+//data class CekUser(
+//    val result:String?,
+//    val id:String?
+//)
 
-data class CekUsername(
-    val result:String?
-)
+//data class CekUsername(
+//    val result:String?
+//)
 
 data class CekRegister(
     val result:String?
@@ -30,9 +30,9 @@ data class User(
     val id:Int = 0
 }
 
-data class CekUpdateUser(
-    val result:String?
-)
+//data class CekUpdateUser(
+//    val result:String?
+//)
 
 data class Berita(
     val id: String?,
