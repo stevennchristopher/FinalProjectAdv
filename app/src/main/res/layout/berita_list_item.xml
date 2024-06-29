@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="berita" type="com.example.advuts160421001.model.Berita" />
+        <variable
+            name="listener"
+            type="com.example.advuts160421001.view.ReadButtonClick" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -83,6 +86,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:text="READ"
+                    android:tag="@{berita.id}"
+                    android:onClick="@{listener::onReadButtonClick}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtDeskripsiBerita"
