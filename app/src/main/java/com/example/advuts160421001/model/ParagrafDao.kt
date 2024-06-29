@@ -16,7 +16,7 @@ interface ParagrafDao {
             "INNER JOIN berita as b ON p.berita_id = b.id\n" +
             "INNER JOIN user as u ON b.user_id = u.id\n" +
             "WHERE p.berita_id = :beritaId")
-    fun getParagrafByBeritaId(beritaId: Int)
+    fun selectParagrafByBeritaId(beritaId: Int): List<Paragraf>
 
     @Query("UPDATE paragraf SET subjudul=:subjudul, deskripsi=:deskripsi WHERE id = :id")
     fun update(subjudul:String, deskripsi:String, id:Int)

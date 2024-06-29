@@ -15,7 +15,7 @@ interface BeritaDao {
             "  FROM berita as b \n" +
             "  INNER JOIN user as u ON b.user_id = u.id \n" +
             "  ORDER BY b.tanggalbuat DESC")
-    fun getBerita()
+    fun selectAllBerita(): List<Berita>
 
     @Query("UPDATE berita SET judul=:judul, urlFoto=:urlFoto, deskripsi=:deskripsi WHERE id = :id")
     fun update(judul:String, urlFoto:String, deskripsi:String, id:Int)

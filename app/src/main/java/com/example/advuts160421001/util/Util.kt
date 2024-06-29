@@ -1,5 +1,9 @@
 package com.example.todoapp.util
 
+import android.content.Context
+import androidx.room.Room
+import com.example.advuts160421001.model.HobbyDatabase
+
 val DB_NAME = "hobbyappdb"
 
 //val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -16,11 +20,11 @@ val DB_NAME = "hobbyappdb"
 //    }
 //}
 
-//fun buildDb(context: Context): UserDatabase {
-//    val db = Room.databaseBuilder(context,
-//        UserDatabase::class.java, DB_NAME)
+fun buildDb(context: Context): HobbyDatabase {
+    val db = Room.databaseBuilder(context,
+        HobbyDatabase::class.java, DB_NAME)
 //        .addMigrations(MIGRATION_1_2)
-//        .build()
-//
-//    return db
-//}
+        .build()
+
+    return db
+}
