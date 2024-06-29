@@ -13,9 +13,9 @@ import androidx.room.PrimaryKey
 //    val result:String?
 //)
 
-data class CekRegister(
-    val result:String?
-)
+//data class CekRegister(
+//    val result:String?
+//)
 
 @Entity
 data class User(
