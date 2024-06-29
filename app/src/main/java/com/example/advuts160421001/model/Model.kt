@@ -34,19 +34,32 @@ data class User(
 //    val result:String?
 //)
 
+@Entity
 data class Berita(
-    val id: String?,
+    @ColumnInfo(name="judul")
     val judul: String?,
+    @ColumnInfo(name="urlFoto")
     val urlFoto: String?,
+    @ColumnInfo(name="deskripsi")
     val deskripsi: String?,
+    @ColumnInfo(name="tanggalbuat")
+    val tanggalbuat: Long?,
+    @ColumnInfo(name="user_id")
     val username_pembuat: String?
-)
+){
+    @PrimaryKey(autoGenerate = true)
+    val id:Int = 0
+}
 
+@Entity
 data class Paragraf(
-    val id: String?,
-    val judulBerita: String?,
-    val urlFotoBerita: String?,
-    val username_pembuat: String?,
+    @ColumnInfo(name="subjudul")
     val subjudul: String?,
-    val deskripsi: String?
-)
+    @ColumnInfo(name="deskripsi")
+    val deskripsi: String?,
+    @ColumnInfo(name="berita_id")
+    val beritaId: Int
+){
+    @PrimaryKey(autoGenerate = true)
+    val id:Int = 0
+}
