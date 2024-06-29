@@ -61,6 +61,8 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
     }
 
     override fun onReadButtonClick(v: View) {
+        val id = v.tag.toString().toInt()
+
         val action = HomeFragmentDirections.actionBeritaDetails(id.toString())
         Navigation.findNavController(v).navigate(action)
     }
