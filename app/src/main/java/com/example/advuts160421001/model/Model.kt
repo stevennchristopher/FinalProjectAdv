@@ -20,13 +20,13 @@ import androidx.room.PrimaryKey
 @Entity
 data class User(
     @PrimaryKey(autoGenerate = true)
-    val id:Int = 0,
+    var id:Int = 0,
     @ColumnInfo(name="username")
-    val username:String?,
+    var username:String?,
     @ColumnInfo(name="email")
-    val email:String?,
+    var email:String?,
     @ColumnInfo(name="password")
-    val password:String?
+    var password:String?
 )
 
 //data class CekUpdateUser(
