@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.android.volley.Request
 import com.android.volley.Response
@@ -21,6 +23,7 @@ import com.example.advuts160421001.databinding.FragmentSignUpBinding
 //import com.example.advuts160421001.model.CekUser
 //import com.example.advuts160421001.model.CekUsername
 import com.example.advuts160421001.model.User
+import com.example.advuts160421001.viewmodel.UserViewModel
 import com.example.todoapp.util.buildDb
 import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +33,7 @@ import kotlinx.coroutines.withContext
 
 class SignUpFragment : Fragment(), SignUpButtonClick {
     private lateinit var dataBinding: FragmentSignUpBinding
+    private lateinit var viewModel: UserViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +46,7 @@ class SignUpFragment : Fragment(), SignUpButtonClick {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
 //        binding.txtSignIn.setOnClickListener {
 //            val action = SignUpFragmentDirections.actionSignInDirections()
@@ -162,27 +167,8 @@ class SignUpFragment : Fragment(), SignUpButtonClick {
                 val email = dataBinding.txtInputRegEmail.text.toString()
                 val password = dataBinding.txtInputRegPassword.text.toString()
 
-                CoroutineScope(Dispatchers.IO).launch {
-                    val db = buildDb(requireContext())
-                    val cekUser = db.userDao().cekUsername(username)
-
-                    withContext(Dispatchers.Main) {
-                        if (cekUser == null) {
-                            val newUser = User(username=username, email = email, password = password)
-                            db.userDao().insertAll(newUser)
-
-                            Toast.makeText(requireContext(), "Create Account Success", Toast.LENGTH_LONG).show()
-
-                            dataBinding.txtInputRegUsername.setText("")
-                            dataBinding.txtInputRegEmail.setText("")
-                            dataBinding.txtInputRegPassword.setText("")
-                            dataBinding.txtInputRegRePassword.setText("")
-
-                        } else {
-                            Toast.makeText(requireContext(), "Username has been taken, please change it", Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
+                viewModel.cekUsername(username)
+                observeViewModel()
             }
         }
     }
@@ -190,5 +176,28 @@ class SignUpFragment : Fragment(), SignUpButtonClick {
     override fun toSignInButtonClick(v: View) {
         val action = SignUpFragmentDirections.actionSignInDirections()
         Navigation.findNavController(v).navigate(action)
+    }
+
+    fun observeViewModel() {
+        viewModel.userLD.observe(viewLifecycleOwner, Observer {
+            if (it == null) {
+                val username = dataBinding.txtInputRegUsername.text.toString()
+                val email = dataBinding.txtInputRegEmail.text.toString()
+                val password = dataBinding.txtInputRegPassword.text.toString()
+
+                var newUser = User(username=username, email = email, password = password)
+                val listNewUser = listOf(newUser)
+                viewModel.register(listNewUser)
+
+                Toast.makeText(requireContext(), "Create Account Success", Toast.LENGTH_LONG).show()
+
+                dataBinding.txtInputRegUsername.setText("")
+                dataBinding.txtInputRegEmail.setText("")
+                dataBinding.txtInputRegPassword.setText("")
+                dataBinding.txtInputRegRePassword.setText("")
+            } else {
+                Toast.makeText(requireContext(), "Username has been taken, please change it", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }

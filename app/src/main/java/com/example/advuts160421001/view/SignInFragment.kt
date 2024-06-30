@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.android.volley.Request
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.advuts160421001.R
 import com.example.advuts160421001.databinding.FragmentSignInBinding
+import com.example.advuts160421001.viewmodel.UserViewModel
 import com.example.todoapp.util.buildDb
 //import com.example.advuts160421001.model.CekUser
 import com.google.gson.Gson
@@ -27,6 +29,7 @@ import kotlinx.coroutines.withContext
 
 class SignInFragment : Fragment(), SignButtonClick {
     private lateinit var dataBinding:FragmentSignInBinding
+    private lateinit var viewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +42,7 @@ class SignInFragment : Fragment(), SignButtonClick {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
 //        binding.txtSignUp.setOnClickListener {
 //            val action = SignInFragmentDirections.actionSignUpDirections()
@@ -107,28 +111,28 @@ class SignInFragment : Fragment(), SignButtonClick {
             val username = dataBinding.txtInputUsername.text.toString()
             val password = dataBinding.txtInputPassword.text.toString()
 
-            CoroutineScope(Dispatchers.IO).launch {
-                val db = buildDb(requireContext())
-                val user = db.userDao().login(username, password)
-
-                withContext(Dispatchers.Main) {
-                    if (user != null) {
-                        Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_LONG).show()
-
-                        val intent = Intent(requireContext(), HomeMainActivity::class.java)
-                        intent.putExtra(HomeMainActivity.activeIdUser, user.id.toString())
-                        startActivity(intent)
-                        requireActivity().finish()
-                    } else {
-                        Toast.makeText(requireContext(), "Invalid Username / Password", Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
+            viewModel.login(username, password)
+            observeViewModel()
         }
     }
 
     override fun toSignUpButtonClick(v: View) {
         val action = SignInFragmentDirections.actionSignUpDirections()
         Navigation.findNavController(v).navigate(action)
+    }
+
+    fun observeViewModel() {
+        viewModel.userLD.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_LONG).show()
+
+                val intent = Intent(requireContext(), HomeMainActivity::class.java)
+                intent.putExtra(HomeMainActivity.activeIdUser, it.id.toString())
+                startActivity(intent)
+                requireActivity().finish()
+            } else {
+                Toast.makeText(requireContext(), "Invalid Username / Password", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 }
