@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.advuts160421001.R
 import com.example.advuts160421001.databinding.ActivityMainBinding
+import com.example.advuts160421001.model.HobbyDatabase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var databinding: ActivityMainBinding
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         val view = databinding.root
         setContentView(view)
 
+//        HobbyDatabase.invoke(this)
+
         navController = (supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment).navController
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
@@ -24,5 +27,4 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp()
     }
-
 }

@@ -21,9 +21,14 @@ import com.example.advuts160421001.databinding.FragmentSignUpBinding
 //import com.example.advuts160421001.model.CekUser
 //import com.example.advuts160421001.model.CekUsername
 import com.example.advuts160421001.model.User
+import com.example.todoapp.util.buildDb
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : Fragment(), SignUpButtonClick {
     private lateinit var dataBinding: FragmentSignUpBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +36,7 @@ class SignUpFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         dataBinding = DataBindingUtil.inflate<FragmentSignUpBinding>(inflater, R.layout.fragment_sign_up, container, false)
-        // nanti implement ini dataBinding.listener = this
+        dataBinding.listener = this
         return dataBinding.root
     }
 
@@ -133,5 +138,57 @@ class SignUpFragment : Fragment() {
 //                }
 //            }
 //        }
+    }
+
+    override fun onRegisterButtonClick(v: View) {
+        if (dataBinding.txtInputRegUsername.text.toString().trim().isEmpty()){
+            dataBinding.txtInputRegUsername.error = "Username cannot be empty"
+        }
+        else if(dataBinding.txtInputRegEmail.text.toString().trim().isEmpty()){
+            dataBinding.txtInputRegEmail.error = "Email cannot be empty"
+        }
+        else if(dataBinding.txtInputRegPassword.text.toString().trim().isEmpty()){
+            dataBinding.txtInputRegPassword.error = "Password cannot be empty"
+        }
+        else if(dataBinding.txtInputRegRePassword.text.toString().trim().isEmpty()){
+            dataBinding.txtInputRegRePassword.error = "Re-type Password cannot be empty"
+        }
+        else{
+            if(dataBinding.txtInputRegPassword.text.toString() != dataBinding.txtInputRegRePassword.text.toString()){
+                Toast.makeText(requireContext(), "Password and Re-type Password has to be same", Toast.LENGTH_LONG).show()
+            }
+            else{
+                val username = dataBinding.txtInputRegUsername.text.toString()
+                val email = dataBinding.txtInputRegEmail.text.toString()
+                val password = dataBinding.txtInputRegPassword.text.toString()
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    val db = buildDb(requireContext())
+                    val cekUser = db.userDao().cekUsername(username)
+
+                    withContext(Dispatchers.Main) {
+                        if (cekUser == null) {
+                            val newUser = User(username=username, email = email, password = password)
+                            db.userDao().insertAll(newUser)
+
+                            Toast.makeText(requireContext(), "Create Account Success", Toast.LENGTH_LONG).show()
+
+                            dataBinding.txtInputRegUsername.setText("")
+                            dataBinding.txtInputRegEmail.setText("")
+                            dataBinding.txtInputRegPassword.setText("")
+                            dataBinding.txtInputRegRePassword.setText("")
+
+                        } else {
+                            Toast.makeText(requireContext(), "Username has been taken, please change it", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun toSignInButtonClick(v: View) {
+        val action = SignUpFragmentDirections.actionSignInDirections()
+        Navigation.findNavController(v).navigate(action)
     }
 }
