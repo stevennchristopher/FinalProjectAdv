@@ -1,5 +1,6 @@
 package com.example.advuts160421001.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,21 +26,21 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
     override fun onBindViewHolder(holder: BeritaViewHolder, position: Int) {
         holder.binding.berita = beritalist[position]
         holder.binding.listener = this
-//        val picasso = Picasso.Builder(holder.itemView.context)
-//        picasso.listener { picasso, uri, exception ->
-//            exception.printStackTrace()
-//        }
-//        picasso.build().load(beritalist[position].urlFoto)
-//            .into(holder.binding.imgBerita, object:Callback {
-//                override fun onSuccess() {
-//                    holder.binding.progressImage.visibility = View.INVISIBLE
-//                    holder.binding.imgBerita.visibility = View.VISIBLE
-//                }
-//
-//                override fun onError(e: Exception?) {
-//                    Log.e("picasso_error", e.toString())
-//                }
-//            })
+        val picasso = Picasso.Builder(holder.itemView.context)
+        picasso.listener { picasso, uri, exception ->
+            exception.printStackTrace()
+        }
+        picasso.build().load(beritalist[position].urlFoto)
+            .into(holder.binding.imgBerita, object:Callback {
+                override fun onSuccess() {
+                    holder.binding.progressImage.visibility = View.INVISIBLE
+                    holder.binding.imgBerita.visibility = View.VISIBLE
+                }
+
+                override fun onError(e: Exception?) {
+                    Log.e("picasso_error", e.toString())
+                }
+            })
 //
 //        holder.binding.txtTitleBerita.text = beritalist[position].judul
 //        holder.binding.txtUsernameBerita.text = "@" + beritalist[position].username_pembuat
