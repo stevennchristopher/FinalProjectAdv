@@ -24,6 +24,7 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
 
     override fun onBindViewHolder(holder: BeritaViewHolder, position: Int) {
         holder.binding.berita = beritalist[position]
+        holder.binding.listener = this
 //        val picasso = Picasso.Builder(holder.itemView.context)
 //        picasso.listener { picasso, uri, exception ->
 //            exception.printStackTrace()
@@ -62,7 +63,6 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
 
     override fun onReadButtonClick(v: View) {
         val id = v.tag.toString().toInt()
-
         val action = HomeFragmentDirections.actionBeritaDetails(id.toString())
         Navigation.findNavController(v).navigate(action)
     }

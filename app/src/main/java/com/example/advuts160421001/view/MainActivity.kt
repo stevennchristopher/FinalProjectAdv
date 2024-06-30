@@ -17,9 +17,7 @@ class MainActivity : AppCompatActivity() {
         databinding = ActivityMainBinding.inflate(layoutInflater)
         val view = databinding.root
         setContentView(view)
-
 //        HobbyDatabase.invoke(this)
-
         navController = (supportFragmentManager.findFragmentById(R.id.hostFragment) as NavHostFragment).navController
         NavigationUI.setupActionBarWithNavController(this, navController)
     }

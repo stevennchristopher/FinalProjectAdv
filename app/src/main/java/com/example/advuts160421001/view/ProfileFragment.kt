@@ -20,7 +20,7 @@ import com.example.advuts160421001.databinding.FragmentSignInBinding
 import com.example.advuts160421001.model.User
 import com.google.gson.Gson
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), ReadButtonClick {
     private lateinit var databinding: FragmentProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,80 +34,9 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        Log.d("apakahid", HomeMainActivity.activeIdUser)
-//
-//        val q = Volley.newRequestQueue(requireContext())
-//        val url = "http://10.0.2.2/anmp/uts/getUserDetail.php"
-//
-//        var stringRequest = object : StringRequest(
-//            Request.Method.POST, url,
-//            {
-//                val userDetail = Gson().fromJson(it, User::class.java)
-//                Log.d("apiresult", userDetail.toString())
-//
-//                binding.txtProfileUsername.text = "Username: @" + userDetail.username
-//                binding.txtProfileEmail.text = "Email: " + userDetail.email
-//                binding.txtInputProfileNamaDpn.setText(userDetail.nama_depan)
-//                binding.txtInputProfileNamaBlkg.setText(userDetail.nama_belakang)
-//                binding.txtInputProfilePassword.setText(userDetail.password)
-//            },
-//            Response.ErrorListener {
-//                Log.e("apiresult", it.message.toString())
-//            })
-//        {
-//            override fun getParams(): MutableMap<String, String>{
-//                val params = HashMap<String, String>()
-//                params["id"] = HomeMainActivity.activeIdUser
-//
-//                return params
-//            }
-//        }
-//        q.add(stringRequest)
-//
-//        binding.btnUpdate.setOnClickListener{
-//            if (binding.txtInputProfileNamaDpn.text.toString().trim().isEmpty()){
-//                binding.txtInputProfileNamaDpn.error = "First Name cannot be empty"
-//            }
-//            else if (binding.txtInputProfileNamaBlkg.text.toString().trim().isEmpty()){
-//                binding.txtInputProfileNamaBlkg.error = "Last Name cannot be empty"
-//            }
-//            else if (binding.txtInputProfilePassword.text.toString().trim().isEmpty()){
-//                binding.txtInputProfilePassword.error = "Password cannot be empty"
-//            }
-//            else {
-//                val url = "http://10.0.2.2/anmp/uts/updateUser.php"
-//
-//                var stringRequest = object : StringRequest(
-//                    Request.Method.POST, url,
-//                    {
-//                        val cekUpdateUser = Gson().fromJson(it, CekUpdateUser::class.java)
-//                        Log.d("apiresult", cekUpdateUser.toString())
-//
-//                        if(cekUpdateUser.result == "success"){
-//                            Toast.makeText(requireContext(), "Update Success", Toast.LENGTH_LONG).show()
-//                        }
-//                    },
-//                    Response.ErrorListener {
-//                        Log.e("apiresult", it.message.toString())
-//                    }) {
-//                    override fun getParams(): MutableMap<String, String> {
-//                        val params = HashMap<String, String>()
-//                        params["id"] = HomeMainActivity.activeIdUser
-//                        params["nama_depan"] = binding.txtInputProfileNamaDpn.text.toString()
-//                        params["nama_belakang"] = binding.txtInputProfileNamaBlkg.text.toString()
-//                        params["password"] = binding.txtInputProfilePassword.text.toString()
-//
-//                        return params
-//                    }
-//                }
-//                q.add(stringRequest)
-//            }
-//        }
-//
-//        binding.btnLogout.setOnClickListener {
-//            val intent = Intent(requireContext(), MainActivity::class.java)
-//            startActivity(intent)
-//            requireActivity().finish()
-//        }
+    }
+
+    override fun onReadButtonClick(v: View) {
+        //button ini buat save profile baru
     }
 }

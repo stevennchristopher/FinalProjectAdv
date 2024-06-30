@@ -2,12 +2,19 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="user"
+            type="com.example.advuts160421001.model.User" />
+        <variable
+            name="listener"
+            type="com.example.advuts160421001.view.ReadButtonClick" />
+    </data>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.ProfileFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Username"
+            android:text="@{user.username}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Email"
+            android:text="@{user.email}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +70,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtInputProfileUsername"
                 android:layout_width="match_parent"
+                android:text="@{user.username}"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,6 +88,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtInputProfileEmail"
+                android:text="@{user.email}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -99,6 +108,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/txtInputProfileGantiPassword"
+                android:text="@{user.password}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:password="true" />
@@ -111,6 +121,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:text="UPDATE"
+            android:tag="@{user.id}"
+            android:onClick="@{listener::onReadButtonClick}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
 
