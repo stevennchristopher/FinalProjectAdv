@@ -38,4 +38,23 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
             userLD.postValue(db.userDao().login(username, password))
         }
     }
+
+    fun fetchUser(userId: Int) {
+        // Fetch user data from database
+        // Here you should implement fetching the user data from your data source (database, API, etc.)
+        // Example:
+        launch {
+            val db = buildDb(getApplication())
+            userLD.postValue(db.userDao().getUserDetail(userId))
+        }
+    }
+
+    fun updateUser(username: String, email: String, password: String, id: Int) {
+        launch {
+            val db = buildDb(getApplication())
+            db.userDao().update(username, email, password, id)
+            // Optionally, refresh the user data
+            userLD.postValue(db.userDao().getUserDetail(id))
+        }
+    }
 }
