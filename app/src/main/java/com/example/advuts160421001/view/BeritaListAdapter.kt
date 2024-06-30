@@ -14,8 +14,8 @@ import com.squareup.picasso.Callback
 class BeritaListAdapter(val beritalist:ArrayList<Berita>)
     : RecyclerView.Adapter<BeritaListAdapter.BeritaViewHolder>(), ReadButtonClick
 {
-    class BeritaViewHolder(var binding: BeritaListItemBinding)
-        : RecyclerView.ViewHolder(binding.root)
+    class BeritaViewHolder(var databinding: BeritaListItemBinding)
+        : RecyclerView.ViewHolder(databinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeritaViewHolder {
         val binding = BeritaListItemBinding.inflate(
@@ -24,17 +24,17 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
     }
 
     override fun onBindViewHolder(holder: BeritaViewHolder, position: Int) {
-        holder.binding.berita = beritalist[position]
-        holder.binding.listener = this
+        holder.databinding.berita = beritalist[position]
+        holder.databinding.listener = this
         val picasso = Picasso.Builder(holder.itemView.context)
         picasso.listener { picasso, uri, exception ->
             exception.printStackTrace()
         }
         picasso.build().load(beritalist[position].urlFoto)
-            .into(holder.binding.imgBerita, object:Callback {
+            .into(holder.databinding.imgBerita, object:Callback {
                 override fun onSuccess() {
-                    holder.binding.progressImage.visibility = View.INVISIBLE
-                    holder.binding.imgBerita.visibility = View.VISIBLE
+                    holder.databinding.progressImage.visibility = View.INVISIBLE
+                    holder.databinding.imgBerita.visibility = View.VISIBLE
                 }
 
                 override fun onError(e: Exception?) {
