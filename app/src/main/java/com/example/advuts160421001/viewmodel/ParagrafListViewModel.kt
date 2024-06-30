@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.advuts160421001.model.Paragraf
+import com.example.advuts160421001.model.ParagrafWithDataBeritaDanUser
 import com.example.todoapp.util.buildDb
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class ParagrafListViewModel(application: Application): AndroidViewModel(application), CoroutineScope{
-    val paragrafLD = MutableLiveData<ArrayList<Paragraf>>()
+    val paragrafLD = MutableLiveData<ArrayList<ParagrafWithDataBeritaDanUser>>()
     val paragrafLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     private var job = Job()
@@ -51,10 +52,10 @@ class ParagrafListViewModel(application: Application): AndroidViewModel(applicat
 
         loadingLD.value = true
         paragrafLoadErrorLD.value = false
+
         launch {
             val db = buildDb(getApplication())
-
-            paragrafLD.postValue(db.paragrafDao().selectParagrafByBeritaId(beritaId = beritaId.toInt()) as ArrayList<Paragraf>?)
+            paragrafLD.postValue(db.paragrafDao().selectParagrafByBeritaId(beritaId = beritaId.toInt()) as ArrayList<ParagrafWithDataBeritaDanUser>?)
             loadingLD.postValue(false)
         }
     }

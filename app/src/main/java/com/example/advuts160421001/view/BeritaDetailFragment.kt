@@ -8,25 +8,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.advuts160421001.R
 import com.example.advuts160421001.databinding.FragmentBeritaDetailBinding
+import com.example.advuts160421001.databinding.FragmentProfileBinding
 import com.example.advuts160421001.model.Paragraf
 import com.example.advuts160421001.viewmodel.ParagrafListViewModel
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.util.concurrent.TimeUnit
 
 class BeritaDetailFragment : Fragment() {
     private lateinit var viewModel:ParagrafListViewModel
-    private lateinit var binding: FragmentBeritaDetailBinding
+    private lateinit var databinding: FragmentBeritaDetailBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBeritaDetailBinding.inflate(inflater,container,false)
+        databinding = DataBindingUtil.inflate<FragmentBeritaDetailBinding>(inflater, R.layout.fragment_berita_detail, container, false)
+        //databinding.listener = this
         // Inflate the layout for this fragment
-        return binding.root
+        return databinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,10 +39,25 @@ class BeritaDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ParagrafListViewModel::class.java)
         viewModel.fetch(beritaId)
 
-//        observeViewModel()
+        observeViewModel()
     }
 
-//    fun observeViewModel() {
+    fun observeViewModel() {
+        viewModel.paragrafLD.observe(viewLifecycleOwner, Observer {
+            databinding.paragraf = it[0]
+
+                Picasso.get().load(it[0].urlFotoBerita)
+                    .into(databinding.imgParagraf, object : Callback {
+                        override fun onSuccess() {
+                            databinding.imgParagraf.visibility = View.VISIBLE
+                        }
+
+                        override fun onError(e: Exception?) {
+                            Log.e("picasso_error", e.toString())
+                        }
+                    })
+        })
+
 //        viewModel.paragrafLiveData.observe(viewLifecycleOwner, Observer { paragrafList ->
 //            var counter = 0
 //
@@ -92,5 +111,7 @@ class BeritaDetailFragment : Fragment() {
 //                }
 //            }
 //        })
-//    }
+
+
+    }
 }

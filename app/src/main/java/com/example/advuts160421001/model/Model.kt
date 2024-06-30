@@ -69,3 +69,12 @@ data class Paragraf(
     @ColumnInfo(name="berita_id")
     val beritaId: Int? = null
 )
+
+data class ParagrafWithDataBeritaDanUser(
+    val id: Int,
+    val judulBerita: String?,
+    val urlFotoBerita: String?,
+    val username_pembuat: String?,
+    val subjudul: String?,
+    val deskripsi: String?
+)

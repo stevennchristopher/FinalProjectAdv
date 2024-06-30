@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable name="paragraf" type="com.example.advuts160421001.model.ParagrafWithDataBeritaDanUser"/>
+    </data>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,7 +48,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="16dp"
-                    android:text="TextView"
+                    android:text="@{paragraf.judulBerita}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +62,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="TextView"
+                    android:text="@{paragraf.username_pembuat}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtTitleBeritaInParagraf" />
@@ -70,7 +74,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
-                    android:text="TextView"
+                    android:text="@{paragraf.subjudul}"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +87,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="Anjing merupakan teman setia bagi banyak orang, dan bermain dengan mereka adalah cara yang menyenangkan untuk memperkuat ikatan antara pemilik dan hewan peliharaan. Bermain dengan anjing bukan hanya tentang menyediakan hiburan bagi mereka, tetapi juga tentang memastikan kesejahteraan fisik dan mental mereka. Berikut adalah beberapa tips tentang cara bermain dengan anjing dengan menyenangkan dan aman."
+                    android:text="@{paragraf.deskripsi}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtSubJudulParagraf" />
