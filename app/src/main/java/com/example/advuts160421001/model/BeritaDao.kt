@@ -11,11 +11,11 @@ interface BeritaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(beritas: List<Berita>)
 
-    @Query("SELECT b.id, b.judul, b.urlFoto, b.deskripsi, u.username as username_pembuat \n" +
-            "  FROM Berita as b \n" +
-            "  INNER JOIN User as u ON b.user_id = u.id \n" +
+    @Query("SELECT b.id, b.judul, b.urlFoto, b.deskripsi, u.username as username_pembuat " +
+            "  FROM Berita as b " +
+            "  INNER JOIN User as u ON b.user_id = u.id " +
             "  ORDER BY b.tanggalbuat DESC")
-    fun selectAllBerita(): List<Berita>
+    fun selectAllBerita(): List<BeritaWithUsername>
 
     @Query("UPDATE berita SET judul=:judul, urlFoto=:urlFoto, deskripsi=:deskripsi WHERE id = :id")
     fun update(judul:String, urlFoto:String, deskripsi:String, id:Int)

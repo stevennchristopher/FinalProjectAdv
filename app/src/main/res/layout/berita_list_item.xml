@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="berita" type="com.example.advuts160421001.model.Berita" />
+        <variable name="berita" type="com.example.advuts160421001.model.BeritaWithUsername" />
         <variable
             name="listener"
             type="com.example.advuts160421001.view.ReadButtonClick" />

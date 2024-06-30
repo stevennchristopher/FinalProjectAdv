@@ -49,6 +49,15 @@ data class Berita(
     val username_pembuat: String?
 )
 
+data class BeritaWithUsername(
+    val id: Int,
+    val judul: String?,
+    val urlFoto: String?,
+    val deskripsi: String?,
+    val tanggalbuat: Long?,
+    val username_pembuat: String?
+)
+
 @Entity
 data class Paragraf(
     @PrimaryKey(autoGenerate = true)

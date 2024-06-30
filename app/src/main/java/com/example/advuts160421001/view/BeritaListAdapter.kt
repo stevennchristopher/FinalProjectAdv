@@ -8,10 +8,11 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.advuts160421001.databinding.BeritaListItemBinding
 import com.example.advuts160421001.model.Berita
+import com.example.advuts160421001.model.BeritaWithUsername
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.Callback
 
-class BeritaListAdapter(val beritalist:ArrayList<Berita>)
+class BeritaListAdapter(val beritalist:ArrayList<BeritaWithUsername>)
     : RecyclerView.Adapter<BeritaListAdapter.BeritaViewHolder>(), ReadButtonClick
 {
     class BeritaViewHolder(var databinding: BeritaListItemBinding)
@@ -56,9 +57,9 @@ class BeritaListAdapter(val beritalist:ArrayList<Berita>)
         return beritalist.size
     }
 
-    fun updateBeritaList(newFoodList: List<Berita>) {
+    fun updateBeritaList(newBeritaList: List<BeritaWithUsername>) {
         beritalist.clear()
-        beritalist.addAll(newFoodList)
+        beritalist.addAll(newBeritaList)
         notifyDataSetChanged()
     }
 

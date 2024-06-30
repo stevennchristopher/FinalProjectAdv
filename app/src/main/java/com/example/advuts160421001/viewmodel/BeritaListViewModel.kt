@@ -9,6 +9,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.advuts160421001.model.Berita
+import com.example.advuts160421001.model.BeritaWithUsername
 import com.example.todoapp.util.buildDb
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -19,7 +20,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class BeritaListViewModel(application: Application): AndroidViewModel(application), CoroutineScope{
-    val beritaLD = MutableLiveData<List<Berita>>()
+    val beritaLD = MutableLiveData<List<BeritaWithUsername>>()
     val beritaLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     private var job = Job()
