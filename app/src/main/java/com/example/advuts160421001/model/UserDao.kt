@@ -17,6 +17,9 @@ interface UserDao {
     @Query("SELECT * FROM user WHERE username= :username")
     fun cekUsername(username:String): User
 
+    @Query("SELECT * FROM user WHERE  username= :username AND password= :password")
+    fun login(username:String, password: String): User
+
     @Query("UPDATE user SET username=:username, email=:email, password=:password WHERE id = :id")
     fun update(username:String, email:String, password:String, id:Int)
 

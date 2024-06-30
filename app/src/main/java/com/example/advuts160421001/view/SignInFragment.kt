@@ -17,8 +17,13 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.advuts160421001.R
 import com.example.advuts160421001.databinding.FragmentSignInBinding
+import com.example.todoapp.util.buildDb
 //import com.example.advuts160421001.model.CekUser
 import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SignInFragment : Fragment(), SignButtonClick {
     private lateinit var dataBinding:FragmentSignInBinding
@@ -92,7 +97,34 @@ class SignInFragment : Fragment(), SignButtonClick {
     }
 
     override fun onSignInButtonClick(v: View) {
-        TODO("Not yet implemented")
+        if (dataBinding.txtInputUsername.text.toString().trim().isEmpty()){
+                dataBinding.txtInputUsername.error = "Username cannot be empty"
+            }
+        else if(dataBinding.txtInputPassword.text.toString().trim().isEmpty()){
+            dataBinding.txtInputPassword.error = "Password cannot be empty"
+        }
+        else{
+            val username = dataBinding.txtInputUsername.text.toString()
+            val password = dataBinding.txtInputPassword.text.toString()
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val db = buildDb(requireContext())
+                val user = db.userDao().login(username, password)
+
+                withContext(Dispatchers.Main) {
+                    if (user != null) {
+                        Toast.makeText(requireContext(), "Login Success", Toast.LENGTH_LONG).show()
+
+                        val intent = Intent(requireContext(), HomeMainActivity::class.java)
+                        intent.putExtra(HomeMainActivity.activeIdUser, user.id.toString())
+                        startActivity(intent)
+                        requireActivity().finish()
+                    } else {
+                        Toast.makeText(requireContext(), "Invalid Username / Password", Toast.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
     }
 
     override fun toSignUpButtonClick(v: View) {
