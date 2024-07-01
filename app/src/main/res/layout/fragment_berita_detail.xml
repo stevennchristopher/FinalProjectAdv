@@ -5,6 +5,9 @@
 
     <data>
         <variable name="paragraf" type="com.example.advuts160421001.model.ParagrafWithDataBeritaDanUser"/>
+        <variable
+            name="listener"
+            type="com.example.advuts160421001.view.ArrowButtonClick" />
     </data>
 
     <FrameLayout
@@ -87,42 +90,46 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@{paragraf.deskripsi}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtSubJudulParagraf" />
 
-                <Button
-                    android:id="@+id/btnNext"
-                    style="style/Widget.Material3.Button.IconButton.Outlined "
-                    android:layout_width="64dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/md_theme_dark_inversePrimary"
-                    android:textSize="20sp"
-                    app:icon="@drawable/baseline_navigate_next_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtDeskripsiParagraf"
-                    app:layout_constraintVertical_bias="0.0" />
+<!--                <Button-->
+<!--                    android:id="@+id/btnNext"-->
+<!--                    style="style/Widget.Material3.Button.IconButton.Outlined "-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:layout_marginBottom="16dp"-->
+<!--                    android:onClick="@{listener::onNextButtonClick}"-->
+<!--                    android:backgroundTint="@color/md_theme_dark_inversePrimary"-->
+<!--                    android:textSize="20sp"-->
+<!--                    app:icon="@drawable/baseline_navigate_next_24"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/txtDeskripsiParagraf"-->
+<!--                    app:layout_constraintVertical_bias="0.0" />-->
 
-                <Button
-                    android:id="@+id/btnPrevious"
-                    style="style/Widget.Material3.Button.IconButton.Outlined "
-                    android:layout_width="64dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="@color/md_theme_dark_outline"
-                    android:textSize="20sp"
-                    app:icon="@drawable/baseline_navigate_before_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/btnNext"
-                    app:layout_constraintTop_toBottomOf="@+id/txtDeskripsiParagraf"
-                    app:layout_constraintVertical_bias="0.0" />
+<!--                <Button-->
+<!--                    android:id="@+id/btnPrevious"-->
+<!--                    style="style/Widget.Material3.Button.IconButton.Outlined "-->
+<!--                    android:layout_width="64dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:layout_marginBottom="16dp"-->
+<!--                    android:backgroundTint="@color/md_theme_dark_outline"-->
+<!--                    android:onClick="@{listener::onPrevButtonClick}"-->
+<!--                    android:textSize="20sp"-->
+<!--                    app:icon="@drawable/baseline_navigate_before_24"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toStartOf="@+id/btnNext"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/txtDeskripsiParagraf"-->
+<!--                    app:layout_constraintVertical_bias="0.0" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

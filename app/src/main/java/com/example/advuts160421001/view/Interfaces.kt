@@ -22,3 +22,8 @@ interface SignUpButtonClick {
     fun onRegisterButtonClick(v: View)
     fun toSignInButtonClick(v: View)
 }
+
+interface ArrowButtonClick {
+    fun onPrevButtonClick(v: View)
+    fun onNextButtonClick(v: View)
+}

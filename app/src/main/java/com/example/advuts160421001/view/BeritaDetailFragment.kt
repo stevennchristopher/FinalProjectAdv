@@ -1,5 +1,6 @@
 package com.example.advuts160421001.view
 
+import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
@@ -20,9 +21,11 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import java.util.concurrent.TimeUnit
 
-class BeritaDetailFragment : Fragment() {
+class BeritaDetailFragment : Fragment(), ArrowButtonClick {
     private lateinit var viewModel:ParagrafListViewModel
     private lateinit var databinding: FragmentBeritaDetailBinding
+    var counter = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,11 +45,12 @@ class BeritaDetailFragment : Fragment() {
         observeViewModel()
     }
 
+    @SuppressLint("SuspiciousIndentation")
     fun observeViewModel() {
         viewModel.paragrafLD.observe(viewLifecycleOwner, Observer {
-            databinding.paragraf = it[0]
+            databinding.paragraf = it[counter]
 
-                Picasso.get().load(it[0].urlFotoBerita)
+                Picasso.get().load(it[counter].urlFotoBerita)
                     .into(databinding.imgParagraf, object : Callback {
                         override fun onSuccess() {
                             databinding.imgParagraf.visibility = View.VISIBLE
@@ -56,6 +60,17 @@ class BeritaDetailFragment : Fragment() {
                             Log.e("picasso_error", e.toString())
                         }
                     })
+
+//            databinding.btnNext.setOnClickListener {
+//                counter+=1
+//            }
+//
+//            databinding.btnPrevious.setOnClickListener {
+//                if(counter!=0){
+//                    counter-=1
+//                }
+//            }
+
         })
 
 //        viewModel.paragrafLiveData.observe(viewLifecycleOwner, Observer { paragrafList ->
@@ -113,5 +128,13 @@ class BeritaDetailFragment : Fragment() {
 //        })
 
 
+    }
+
+    override fun onPrevButtonClick(v: View) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onNextButtonClick(v: View) {
+        TODO("Not yet implemented")
     }
 }
